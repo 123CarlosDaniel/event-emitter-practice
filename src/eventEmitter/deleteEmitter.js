@@ -6,9 +6,11 @@ class MyEmitter extends events {
 
 const emitter = new MyEmitter()
 
-emitter.on('message', function(){
+const emitterFunction = function () {
   console.log('A message was emitted!!!')
-})
+}
+
+emitter.on('message',emitterFunction)
 
 const runner = setInterval(() => {
   console.log('\n')
@@ -16,5 +18,6 @@ const runner = setInterval(() => {
 }, 1000);
 
 setTimeout(() => {
+  emitter.removeListener('message', emitterFunction )
   clearInterval(runner)
-}, 5000);
+}, 2000);
